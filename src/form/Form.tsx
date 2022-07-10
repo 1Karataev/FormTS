@@ -154,7 +154,7 @@ const Form:React.FC = ()=> {
           <TextField
             id="outlined-required"
             label="ФИО"
-            placeholder="+7 (000) 000-00-00"
+            placeholder="ФИО"
             value={fam}
             className={classes.select}
             {...register('fam')}
