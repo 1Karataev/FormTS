@@ -1,7 +1,9 @@
 import { InputLabel, Select, FormControl, Box, MenuItem, SelectChangeEvent } from '@mui/material';
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import classes from './Form.module.scss'
-
+import { setCiti } from '../redux/Form';
+import { RootState } from '../redux/store';
 type citi = {
   id: string,
   name:string,
@@ -13,15 +15,18 @@ interface SelectProps {
   reg: Object;
 }
 
-const FormSelect: React.FC<SelectProps> = ({ sel, obj, reg }) => {
-  const [value, setValue] = React.useState<string>('');
+const FormSelect: React.FC<SelectProps> = ({ sel, obj, reg}) => {
+  const value = useSelector((state:RootState) => state.form.citi)
+  const [error, setError] = useState<boolean>(false)
+  const dispatch = useDispatch();
   const handleChange = (event: SelectChangeEvent) => {
-    setValue(event.target.value as string);
+    dispatch(setCiti(event.target.value as string));
+    value == '' ? setError(false) : setError(true);
   };
-
+ 
   return (
     <Box sx={{ minWidth: 120 }} className={classes.select}>
-      <FormControl style={{ width: '100%' }}>
+      <FormControl style={{ width: '100%' }} error={error}>
         <InputLabel id="demo-simple-select-label">{sel}</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -43,3 +48,5 @@ const FormSelect: React.FC<SelectProps> = ({ sel, obj, reg }) => {
 };
 
 export default FormSelect
+
+

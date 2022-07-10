@@ -27,10 +27,13 @@ reducers:{
 setForm(state, action: PayloadAction<FormState>){
   state = action.payload
   console.log(JSON.stringify(state))
+},
+setCiti(state, action: PayloadAction<string>){
+  state.citi = action.payload
 }
 }
 
 })
-export const {setForm } = formSlice.actions
+export const {setForm, setCiti } = formSlice.actions
 
 export default formSlice.reducer

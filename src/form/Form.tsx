@@ -1,13 +1,15 @@
-import { Select, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import FormSelect from './Select';
 import classes from './Form.module.scss'
 import cities from '../JSON/cities.json';
 import { FormState, setForm } from '../redux/Form';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LoadingButton } from '@mui/lab';
 import sources from '../JSON/sources.json'
+import { RootState } from '../redux/store';
+
 
 
 const Form:React.FC = ()=> {
@@ -27,6 +29,7 @@ const Form:React.FC = ()=> {
   const { register, handleSubmit } = useForm<FormState>();
   const dispatch = useDispatch()
 
+  const select = useSelector((state:RootState) => state.form.citi)
 
   const nameHundler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -67,14 +70,14 @@ const Form:React.FC = ()=> {
  
   useEffect(() => {
     setDisable(true) ;
-
     (nameBol || name == '') ||
     (emailBol || email == '') ||
     (namberBol || namber == '')  ||
-    (linkBol || link == '')
+    (linkBol || link == '') ||
+    (select == '')
       ? setDisable(true)
       : setDisable(false);
-  }, [name, email, namber,link]);
+  }, [name, email, namber,link,select]);
   
   return (
     <form action="" className={classes.form} onSubmit={handleSubmit(Sub)}>
@@ -125,7 +128,7 @@ const Form:React.FC = ()=> {
         />
       </div>
 
-      <FormSelect sel={'Выберите город *'} obj={cities} reg={{ ...register('citi') }} />
+      <FormSelect sel={'Выберите город *'} obj={cities} reg={{ ...register('citi') } }/>
 
       <TextField
         id="outlined-required"
@@ -140,24 +143,26 @@ const Form:React.FC = ()=> {
         {span ? 'Скрыть дополнительные поля' : 'Показать дополнительные поля'}
         <span className={span ? classes.arrow_rotate : ''} />
       </div>
-      {span && (
-        <>
-          <TextField
-            id="outlined-required"
-            label="ФИО"
-            placeholder="+7 (000) 000-00-00"
-            value={fam}
-            className={classes.select}
-            {...register('fam')}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFam(e.target.value)}
-          />
-          <FormSelect
-            sel={'От куда узнали про нас?'}
-            obj={sources}
-            reg={{ ...register('sources') }}
-          />
-        </>
-      )}
+    
+        {span && (
+          <>
+            <TextField
+              id="outlined-required"
+              label="ФИО"
+              placeholder="+7 (000) 000-00-00"
+              value={fam}
+              className={classes.select}
+              {...register('fam')}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFam(e.target.value)}
+            />
+            <FormSelect
+              sel={'От куда узнали про нас?'}
+              obj={sources}
+              reg={{ ...register('sources') }}
+            />
+          </>
+        )}
+      
 
       <LoadingButton
         size="small"
@@ -174,4 +179,8 @@ const Form:React.FC = ()=> {
 
 export default Form
 
+
+function state(state: any, arg1: (RootState: unknown) => any) {
+  throw new Error('Function not implemented.');
+}
 

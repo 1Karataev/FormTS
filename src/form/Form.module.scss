@@ -34,15 +34,19 @@
 }
 .arrow{
   display: inline-block;
-  width: 90% !important;
+  width: auto !important;
+  align-self: flex-start;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
   margin-bottom: 20px;
   width: 226px;
   height: 21px;
-  margin-left: 5px;
+  margin-left: 5.5%;
   cursor: default;
+  &:active{
+    color: #0086A8;
+  }
    &_rotate{
       transform: rotate(180deg);
     }
