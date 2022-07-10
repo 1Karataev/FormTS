@@ -128,7 +128,12 @@ const Form:React.FC = ()=> {
         />
       </div>
 
-      <FormSelect sel={'Выберите город *'} obj={cities} reg={{ ...register('citi') } }/>
+      <FormSelect
+        required={true}
+        sel={'Выберите город *'}
+        obj={cities}
+        reg={{ ...register('citi') }}
+      />
 
       <TextField
         id="outlined-required"
@@ -143,26 +148,26 @@ const Form:React.FC = ()=> {
         {span ? 'Скрыть дополнительные поля' : 'Показать дополнительные поля'}
         <span className={span ? classes.arrow_rotate : ''} />
       </div>
-    
-        {span && (
-          <>
-            <TextField
-              id="outlined-required"
-              label="ФИО"
-              placeholder="+7 (000) 000-00-00"
-              value={fam}
-              className={classes.select}
-              {...register('fam')}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFam(e.target.value)}
-            />
-            <FormSelect
-              sel={'От куда узнали про нас?'}
-              obj={sources}
-              reg={{ ...register('sources') }}
-            />
-          </>
-        )}
-      
+
+      {span && (
+        <>
+          <TextField
+            id="outlined-required"
+            label="ФИО"
+            placeholder="+7 (000) 000-00-00"
+            value={fam}
+            className={classes.select}
+            {...register('fam')}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFam(e.target.value)}
+          />
+          <FormSelect
+            required={false}
+            sel={'От куда узнали про нас?'}
+            obj={sources}
+            reg={{ ...register('sources') }}
+          />
+        </>
+      )}
 
       <LoadingButton
         size="small"

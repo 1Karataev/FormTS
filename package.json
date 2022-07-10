@@ -2,6 +2,7 @@
   "name": "sk",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://1karataev.github.io/FormTS",
   "dependencies": {
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@material/textfield": "^14.0.0",
@@ -14,6 +15,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "gh-pages": "^4.0.0",
     "material-ui": "^0.20.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,6 +27,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

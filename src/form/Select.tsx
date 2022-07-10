@@ -1,27 +1,29 @@
 import { InputLabel, Select, FormControl, Box, MenuItem, SelectChangeEvent } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import classes from './Form.module.scss'
 import { setCiti } from '../redux/Form';
-import { RootState } from '../redux/store';
+
 type citi = {
   id: string,
   name:string,
   
 }
 interface SelectProps {
+  required: boolean;
   sel: string;
   obj: Array<string> | Array<citi>;
   reg: Object;
 }
 
-const FormSelect: React.FC<SelectProps> = ({ sel, obj, reg}) => {
-  const value = useSelector((state:RootState) => state.form.citi)
+const FormSelect: React.FC<SelectProps> = ({required, sel, obj, reg}) => {
+  const [value, setValue] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
   const dispatch = useDispatch();
   const handleChange = (event: SelectChangeEvent) => {
+    setValue(event.target.value as string);
     dispatch(setCiti(event.target.value as string));
-    value == '' ? setError(false) : setError(true);
+    
   };
  
   return (
@@ -29,6 +31,7 @@ const FormSelect: React.FC<SelectProps> = ({ sel, obj, reg}) => {
       <FormControl style={{ width: '100%' }} error={error}>
         <InputLabel id="demo-simple-select-label">{sel}</InputLabel>
         <Select
+          required={required}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={value}
@@ -37,7 +40,7 @@ const FormSelect: React.FC<SelectProps> = ({ sel, obj, reg}) => {
           {...reg}
           onChange={handleChange}>
           {obj.map((item, i) => (
-            <MenuItem key ={i} value={typeof item == 'string' ? item : item.name}>
+            <MenuItem key={i} value={typeof item == 'string' ? item : item.name}>
               {typeof item == 'string' ? item : item.name}
             </MenuItem>
           ))}
