@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/FormTS/static/css/main.df8d1cb6.css",
+    "main.js": "/FormTS/static/js/main.e331836f.js",
+    "static/js/787.716a4f30.chunk.js": "/FormTS/static/js/787.716a4f30.chunk.js",
+    "static/media/S2.svg": "/FormTS/static/media/S2.88e7af929313292f5f97b23bb84713f1.svg",
+    "static/media/S.svg": "/FormTS/static/media/S.8fa211fd42e13423669914d1f6927b2b.svg",
+    "static/media/G.svg": "/FormTS/static/media/G.994611453eae7761a062cedeb3eff632.svg",
+    "index.html": "/FormTS/index.html",
+    "static/media/D2.svg": "/FormTS/static/media/D2.cf41829974b971845f91fbbc45fd1015.svg",
+    "static/media/arrow.svg": "/FormTS/static/media/arrow.83275ad005fe1c0e7d36.svg",
+    "static/media/D1.svg": "/FormTS/static/media/D1.132c30eff9dcd30e3e803cf3c596f281.svg",
+    "static/media/K.svg": "/FormTS/static/media/K.b22c2225ee93d83d99a5484b1c9d1394.svg",
+    "static/media/E.svg": "/FormTS/static/media/E.68893b53c295171cc1952ae0001f70b6.svg",
+    "static/media/N.svg": "/FormTS/static/media/N.a72e3c1d75badfaffcbf97448571e46b.svg",
+    "static/media/I.svg": "/FormTS/static/media/I.77a691ab55c42126ac812d2b4326f861.svg",
+    "main.df8d1cb6.css.map": "/FormTS/static/css/main.df8d1cb6.css.map",
+    "main.e331836f.js.map": "/FormTS/static/js/main.e331836f.js.map",
+    "787.716a4f30.chunk.js.map": "/FormTS/static/js/787.716a4f30.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df8d1cb6.css",
+    "static/js/main.e331836f.js"
+  ]
+}
