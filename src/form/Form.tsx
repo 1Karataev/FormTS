@@ -1,6 +1,6 @@
-import { TextField } from '@mui/material';
+import { TextField} from '@mui/material';
 import React, { useEffect, useState } from 'react'
-import FormSelect from './Select';
+import FormSelect from './FormSelect';
 import classes from './Form.module.scss'
 import cities from '../JSON/cities.json';
 import { FormState, setForm } from '../redux/Form';
@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LoadingButton } from '@mui/lab';
 import sources from '../JSON/sources.json'
 import { RootState } from '../redux/store';
-
-
+import { CSSTransition } from 'react-transition-group';
+ 
 
 const Form:React.FC = ()=> {
   const [name, setName] = useState<string>('');
@@ -127,14 +127,12 @@ const Form:React.FC = ()=> {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => linkHundler(e)}
         />
       </div>
-
       <FormSelect
         required={true}
         sel={'Выберите город *'}
         obj={cities}
         reg={{ ...register('citi') }}
       />
-
       <TextField
         id="outlined-required"
         label="Название организации/студии"
@@ -144,12 +142,13 @@ const Form:React.FC = ()=> {
         {...register('org')}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setOrg(e.target.value)}
       />
+
       <div className={classes.arrow} onClick={spanHundler}>
         {span ? 'Скрыть дополнительные поля' : 'Показать дополнительные поля'}
         <span className={span ? classes.arrow_rotate : ''} />
       </div>
 
-      {span && (
+      <CSSTransition in={span} timeout={300} classNames="alert" mountOnEnter unmountOnExit>
         <>
           <TextField
             id="outlined-required"
@@ -160,6 +159,11 @@ const Form:React.FC = ()=> {
             {...register('fam')}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFam(e.target.value)}
           />
+        </>
+      </CSSTransition>
+
+      <CSSTransition in={span} timeout={300} classNames="alert" mountOnEnter unmountOnExit>
+        <>
           <FormSelect
             required={false}
             sel={'От куда узнали про нас?'}
@@ -167,7 +171,7 @@ const Form:React.FC = ()=> {
             reg={{ ...register('sources') }}
           />
         </>
-      )}
+      </CSSTransition>
 
       <LoadingButton
         size="small"
@@ -185,7 +189,35 @@ const Form:React.FC = ()=> {
 export default Form
 
 
-function state(state: any, arg1: (RootState: unknown) => any) {
-  throw new Error('Function not implemented.');
-}
 
+
+
+
+
+
+{/* <div className={classes.arrow} onClick={spanHundler}>
+  {span ? 'Скрыть дополнительные поля' : 'Показать дополнительные поля'}
+  <span className={span ? classes.arrow_rotate : ''} />
+</div>;
+
+{
+  span && (
+    <>
+      <TextField
+        id="outlined-required"
+        label="ФИО"
+        placeholder="ФИО"
+        value={fam}
+        className={classes.select}
+        {...register('fam')}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFam(e.target.value)}
+      />
+      <FormSelect
+        required={false}
+        sel={'От куда узнали про нас?'}
+        obj={sources}
+        reg={{ ...register('sources') }}
+      />
+    </>
+  );
+} */}
